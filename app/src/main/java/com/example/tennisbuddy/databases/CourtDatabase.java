@@ -10,7 +10,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.tennisbuddy.daos.CourtDao;
 
 public abstract class CourtDatabase extends RoomDatabase {
-    public static UserDatabase instance;
+    public static CourtDatabase instance;
     public abstract CourtDao courtDao();
 
     private static final RoomDatabase.Callback sOnOpenCallback = new RoomDatabase.Callback() {
@@ -20,10 +20,10 @@ public abstract class CourtDatabase extends RoomDatabase {
         }
     };
 
-    public static UserDatabase getDatabase(final Context context) {
+    public static CourtDatabase getDatabase(final Context context) {
         if (instance == null) {
-            synchronized (UserDatabase.class) {
-                instance = Room.databaseBuilder(context.getApplicationContext(), UserDatabase.class, "tbl_courts").
+            synchronized (CourtDatabase.class) {
+                instance = Room.databaseBuilder(context.getApplicationContext(), CourtDatabase.class, "tbl_courts").
                         addCallback(sOnOpenCallback)
                         .fallbackToDestructiveMigration()
                         .build();

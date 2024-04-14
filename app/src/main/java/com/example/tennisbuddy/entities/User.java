@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity (tableName = "user")
 public class User {
     @PrimaryKey(autoGenerate = true)
     private int userId;
@@ -20,6 +20,9 @@ public class User {
 
     @ColumnInfo(name = "experience")
     private String experienceLevel;
+
+    @ColumnInfo(name = "password")
+    private String password;
 
     public int getUserId() {
         return userId;
@@ -55,5 +58,13 @@ public class User {
 
     public void setExperienceLevel(String experienceLevel) {
         this.experienceLevel = experienceLevel;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

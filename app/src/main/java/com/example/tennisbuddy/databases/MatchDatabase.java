@@ -8,13 +8,15 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.tennisbuddy.daos.UserDao;
+import com.example.tennisbuddy.daos.MatchDao;
+import com.example.tennisbuddy.entities.Court;
+import com.example.tennisbuddy.entities.Match;
 import com.example.tennisbuddy.entities.User;
 
-@Database(entities = {User.class}, version = 1, exportSchema = false)
-public abstract class UserDatabase extends RoomDatabase {
-    public static UserDatabase instance;
-    public abstract UserDao userDao();
+@Database(entities = {User.class, Court.class, Match.class}, version = 1, exportSchema = false)
+public abstract class MatchDatabase extends RoomDatabase {
+    public static MatchDatabase instance;
+    public abstract MatchDao matchDao();
 
     private static final RoomDatabase.Callback sOnOpenCallback = new RoomDatabase.Callback() {
         @Override
@@ -23,10 +25,10 @@ public abstract class UserDatabase extends RoomDatabase {
         }
     };
 
-    public static UserDatabase getDatabase(final Context context) {
+    public static MatchDatabase getDatabase(final Context context) {
         if (instance == null) {
-            synchronized (UserDatabase.class) {
-                instance = Room.databaseBuilder(context.getApplicationContext(), UserDatabase.class, "tbl_users").
+            synchronized (MatchDatabase.class) {
+                instance = Room.databaseBuilder(context.getApplicationContext(), MatchDatabase.class, "tbl_matches").
                         addCallback(sOnOpenCallback)
                         .fallbackToDestructiveMigration()
                         .build();
