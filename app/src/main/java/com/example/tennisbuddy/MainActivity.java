@@ -1,8 +1,10 @@
 package com.example.tennisbuddy;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,21 +17,33 @@ public class MainActivity extends AppCompatActivity {
     ImageView logo = findViewById(R.id.imageLogo);
     Button login = findViewById(R.id.buttonLogin);
     Button forgot = findViewById(R.id.buttonForgot);
-    Button signup = findViewById(R.id.buttonSignup);
+    Button signup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        boolean loggedIn = false;
-        if(!loggedIn){
-            setContentView(R.layout.login);
-            logo.setImageResource(R.drawable.Logo);
-            login.setOnClickListener(l -> {loginButton();});
-            forgot.setOnClickListener(l -> {forgot();});
-            signup.setOnClickListener(l -> {signup();});
+        setContentView(R.layout.activity_login);
 
-        }
-
+        prepComponents();
     }
+
+    private void prepComponents() {
+        logo = findViewById(R.id.imageLogo);
+        Drawable logoDraw = ContextCompat.getDrawable(this, R.drawable.logo);
+        logo.setImageDrawable(logoDraw);
+
+        email = findViewById(R.id.editTextEmailAddress);
+        password = findViewById(R.id.editTextPassword);
+
+        login = findViewById(R.id.buttonLogin);
+        login.setOnClickListener(l -> loginButton());
+
+        forgot = findViewById(R.id.buttonForgot);
+        forgot.setOnClickListener(l -> forgot());
+
+        signup = findViewById(R.id.buttonSignup);
+        signup.setOnClickListener(l -> signup());
+    }
+
     private void loginButton(){
         String emailInput = email.getText().toString();
         String passwordInput = password.getText().toString();

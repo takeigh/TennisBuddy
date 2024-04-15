@@ -4,14 +4,23 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
+    <TextView
+        android:id="@+id/textViewLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/backButton"
+        android:layout_margin="20dp"
+        android:text="@string/location"
+        android:textSize="8pt"/>
+
     <!-- Location Dropdown -->
     <Spinner
         android:id="@+id/spinnerLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:prompt="@string/select_location"
-        android:entries="@array/location_options" />
+        android:layout_below="@id/textViewLocation"
+        android:layout_margin="16dp"
+        android:prompt="@string/select_location" />
 
     <!-- Date and Time Selection -->
     <TextView
@@ -19,9 +28,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/date_and__time"
-        android:textSize="18sp"
+        android:textSize="8pt"
         android:layout_below="@id/spinnerLocation"
-        android:layout_marginTop="16dp"/>
+        android:layout_margin="20dp"/>
 
     <!-- Date and Time Pickers -->
     <LinearLayout
@@ -30,7 +39,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/textViewDateTime"
-        android:layout_marginTop="8dp">
+        android:layout_marginT="8dp">
 
         <!-- Date Picker -->
         <Spinner
@@ -38,8 +47,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:prompt="@string/select_date"
-            android:entries="@array/date_options" />
+            android:prompt="@string/select_date" />
 
         <!-- Time Picker -->
         <Spinner
@@ -47,8 +55,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:prompt="@string/select_time"
-            android:entries="@array/time_options" />
+            android:prompt="@string/select_time"/>
     </LinearLayout>
 
     <!-- Match Type Dropdown -->
@@ -57,25 +64,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/dateTimeContainer"
-        android:layout_marginTop="16dp"
-        android:prompt="@string/select_match_type"
-        android:entries="@array/match_type_options" />
+        android:layout_margin="20dp"
+        android:prompt="@string/select_match_type"/>
 
     <!-- Create Match Button -->
     <Button
         android:id="@+id/buttonCreateMatch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/spinnerMatchType"
-        android:layout_marginTop="24dp"
-        android:text="@string/create__match" />
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:text="@string/create_match" />
 
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/back_button_description"
-        android:onClick="onBackButtonClick" />
-
+        android:text="@string/back_button_description"/>
 
 </RelativeLayout>

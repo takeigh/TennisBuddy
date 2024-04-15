@@ -2,4 +2,17 @@
     <string name="app_name">Tennis Buddy</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email">Email:</string>
+    <string name="password">Password:</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="signup">Sign Up</string>
+    <string name="select_location">Select Location</string>
+    <string name="date_and__time">Date and Time:</string>
+    <string name="select_date">Select Date:</string>
+    <string name="select_time">Select Time:</string>
+    <string name="select_match_type">Match Type:</string>
+    <string name="create_match">Create Match</string>
+    <string name="back_button_description">Back</string>
+    <string name="location">Location:</string>
 </resources>
