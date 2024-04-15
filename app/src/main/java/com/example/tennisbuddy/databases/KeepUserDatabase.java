@@ -29,6 +29,7 @@ public abstract class KeepUserDatabase extends RoomDatabase {
                 instance = Room.databaseBuilder(context.getApplicationContext(), KeepUserDatabase.class, "tbl_keepUser").
                         addCallback(sOnOpenCallback)
                         .fallbackToDestructiveMigration()
+                        .allowMainThreadQueries()
                         .build();
             }
         }

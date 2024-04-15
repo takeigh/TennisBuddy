@@ -13,9 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class CreateMatch extends Fragment {
-
-    private CreateMatchViewModel mViewModel;
-
     public static CreateMatch newInstance() {
         return new CreateMatch();
     }
@@ -25,12 +22,4 @@ public class CreateMatch extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_create_match, container, false);
     }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(CreateMatchViewModel.class);
-        // TODO: Use the ViewModel
-    }
-
 }

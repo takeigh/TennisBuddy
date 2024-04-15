@@ -17,5 +17,5 @@ public interface ChatDao {
     List<Chat> getChatsByIDs(int senderId, int receiverId);
 
     @Insert
-    void addChat();
+    void addChat(Chat chat);
 }

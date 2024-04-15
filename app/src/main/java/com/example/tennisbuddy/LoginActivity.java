@@ -11,19 +11,30 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
-    EditText email = findViewById(R.id.editTextEmailAddress);
-    EditText password = findViewById(R.id.editTextPassword);
-    ImageView logo = findViewById(R.id.imageLogo);
-    Button login = findViewById(R.id.buttonLogin);
-    Button forgot = findViewById(R.id.buttonForgot);
+import com.example.tennisbuddy.databases.KeepUserDatabase;
+import com.example.tennisbuddy.databases.UserDatabase;
+import com.example.tennisbuddy.entities.KeepUser;
+import com.example.tennisbuddy.entities.User;
+
+public class LoginActivity extends AppCompatActivity {
+    EditText email;
+    EditText password;
+    ImageView logo;
+    Button login;
+    Button forgot;
     Button signup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         prepComponents();
+
+        if (KeepUserDatabase.getDatabase(this).keepUserDao().getKeepUser() != null) {
+            Intent intent = new Intent(this, LandingActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void prepComponents() {
@@ -47,42 +58,44 @@ public class MainActivity extends AppCompatActivity {
     private void loginButton(){
         String emailInput = email.getText().toString();
         String passwordInput = password.getText().toString();
+
         //handle login here
         login(emailInput, passwordInput);
     }
-    private void forgot(){
-        boolean userInDatabase = false;
-        String emailInput = email.getText().toString();
-        String password;
-        //handle forgot password (toast password and then automatically log user in)
-        if (userInDatabase){
-            Toast.makeText(this, "Password: " + password, Toast.LENGTH_LONG).show();
-            login(emailInput, password);
-        } else {
-            Toast.makeText(this, "Invalid Username!", Toast.LENGTH_LONG).show();
-            clearFields();
-        }
-    }
-    private void signup(){
-        Intent intent = new Intent(this, SignupActivity.class);
-        startActivity(intent);
 
-    }
-    public void clearFields(){
-        email.setText(null);
-        password.setText(null);
-    }
     private void login(String email, String password){
-        boolean loginSuccess = false;
+        User user = UserDatabase.getDatabase(this).userDao().getUserByEmail(email);
 
-        if(!loginSuccess){
-            Toast.makeText(this, "Invalid Username/Password", Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(this, "Login Success!", Toast.LENGTH_LONG).show(); //FOR TESTING ONLY
-            //proceed to the main application
-            //goto landing page fragment
+        if (user.getPassword().equals(password)) {
+            KeepUser kUser = new KeepUser();
+            kUser.setUserId(user.getUserId());
+            KeepUserDatabase.getDatabase(this).keepUserDao().addUser(kUser);
+
             Intent intent = new Intent(this, LandingActivity.class);
             startActivity(intent);
         }
+    }
+
+    private void forgot(){
+        String emailInput = email.getText().toString();
+        User user = UserDatabase.getDatabase(this).userDao().getUserByEmail(emailInput);
+
+        if (user != null) {
+            Toast.makeText(this, "Password: " + user.getPassword(), Toast.LENGTH_LONG).show();
+            login(emailInput, user.getPassword());
+        } else {
+            Toast.makeText(this, "Invalid Email!", Toast.LENGTH_LONG).show();
+            clearFields();
+        }
+    }
+
+    private void signup(){
+        Intent intent = new Intent(this, SignupActivity.class);
+        startActivity(intent);
+    }
+
+    public void clearFields(){
+        email.setText(null);
+        password.setText(null);
     }
 }

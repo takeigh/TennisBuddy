@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".LoginActivity"
     >
 
     <ImageView
@@ -12,11 +13,6 @@
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp" />
-
-
-
-
-
 
     <LinearLayout
         android:id="@+id/email"
@@ -43,28 +39,28 @@
 
     </LinearLayout>
 
-
     <LinearLayout
         android:id="@+id/password"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_centerInParent="true">
-    <TextView
-        android:id="@+id/textPassword"
-        android:layout_width="75dp"
-        android:layout_height="wrap_content"
-
-        android:text="@string/password"
-        />
-
-    <EditText
-        android:id="@+id/editTextPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        tools:layout_editor_absoluteY="236dp" />
-</LinearLayout>
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/textPassword"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:text="@string/password" />
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            tools:layout_editor_absoluteY="236dp" />
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="wrap_content"
@@ -75,6 +71,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="500dp"/>
+
     <Button
         android:id="@+id/buttonForgot"
         android:layout_width="wrap_content"

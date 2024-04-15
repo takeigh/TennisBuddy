@@ -21,11 +21,11 @@ import java.util.Date;
                         parentColumns = "userId",
                         childColumns = "player2",
                         onDelete = ForeignKey.CASCADE),
-            @ForeignKey(entity = Court.class,
+            @ForeignKey(entity = User.class,
                         parentColumns = "userId",
                         childColumns = "player3",
                         onDelete = ForeignKey.CASCADE),
-            @ForeignKey(entity = Court.class,
+            @ForeignKey(entity = User.class,
                         parentColumns = "userId",
                         childColumns = "player4",
                         onDelete = ForeignKey.CASCADE),
@@ -49,8 +49,14 @@ public class Match {
     @ColumnInfo(name = "player4")
     private int player4Id;
 
-    @ColumnInfo(name = "date")
-    private Date date;
+    @ColumnInfo(name = "month")
+    private int month;
+
+    @ColumnInfo(name = "day")
+    private int day;
+
+    @ColumnInfo(name = "year")
+    private int year;
 
     @ColumnInfo(name = "hour")
     private int hour;
@@ -60,6 +66,10 @@ public class Match {
 
     public int getMatchId() {
         return matchId;
+    }
+
+    public void setMatchId(int id) {
+        this.matchId = id;
     }
 
     public int getHostId() {
@@ -100,5 +110,45 @@ public class Match {
 
     public void setPlayer4Id(int id) {
         this.player4Id = id;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public int getHour() {
+        return hour;
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public int getMinute() {
+        return minute;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
     }
 }
