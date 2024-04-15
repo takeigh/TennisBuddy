@@ -64,10 +64,10 @@ public class BrowseMatches extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_browse_matches, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        List<TennisMatch> tennisMatches = new ArrayList<>(); // populate/replace this
-        //TennisMatch Adapter is a class that holds tennis match data-Not created yet.
-        TennisMatchAdapter adapter = new TennisMatchAdapter(tennisMatches);
-        recyclerView.setAdapter(adapter);
+        // List<TennisMatch> tennisMatches = new ArrayList<>(); // populate/replace this
+        // TennisMatch Adapter is a class that holds tennis match data-Not created yet.
+//        TennisMatchAdapter adapter = new TennisMatchAdapter(tennisMatches);
+//        recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;
     }

@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/textViewDateTime"
-        android:layout_marginT="8dp">
+        android:layout_margin="8dp">
 
         <!-- Date Picker -->
         <Spinner

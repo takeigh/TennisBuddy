@@ -19,6 +19,10 @@ public class Court {
         return courtId;
     }
 
+    public void setCourtId(int id) {
+        this.courtId = id;
+    }
+
     public String getCourtName() {
         return courtName;
     }

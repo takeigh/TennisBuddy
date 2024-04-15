@@ -32,14 +32,30 @@ public class Chat {
     @ColumnInfo(name = "receiver")
     private int receiverId;
 
-    @ColumnInfo(name = "date")
-    private Date date;
+    @ColumnInfo(name = "month")
+    private int month;
+
+    @ColumnInfo(name = "day")
+    private int day;
+
+    @ColumnInfo(name = "year")
+    private int year;
+
+    @ColumnInfo(name = "hour")
+    private int hour;
+
+    @ColumnInfo(name = "minute")
+    private int minute;
 
     @ColumnInfo(name = "message")
     private String message;
 
     public int getMessageId() {
         return messageId;
+    }
+
+    public void setMessageId(int id) {
+        this.messageId = id;
     }
 
     public int getSenderId() {
@@ -58,12 +74,44 @@ public class Chat {
         this.receiverId = id;
     }
 
-    public Date getDate() {
-        return date;
+    public int getMonth() {
+        return month;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public int getHour() {
+        return hour;
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public int getMinute() {
+        return minute;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
     }
 
     public String getMessage() {

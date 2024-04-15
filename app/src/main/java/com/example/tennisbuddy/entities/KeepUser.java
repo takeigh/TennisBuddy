@@ -7,18 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity (tableName = "keepUser")
 public class KeepUser {
     @PrimaryKey
-    private boolean yes;
-
-    @ColumnInfo(name = "user")
     private int userId;
-
-    public boolean getYes() {
-        return yes;
-    }
-
-    public void setYes(boolean yes) {
-        this.yes = yes;
-    }
 
     public int getUserId() {
         return userId;

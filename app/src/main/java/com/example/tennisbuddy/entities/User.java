@@ -28,6 +28,10 @@ public class User {
         return userId;
     }
 
+    public void setUserId(int id) {
+        this.userId = id;
+    }
+
     public String getFirstName() {
         return firstName;
     }

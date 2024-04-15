@@ -29,6 +29,7 @@ public abstract class UserDatabase extends RoomDatabase {
                 instance = Room.databaseBuilder(context.getApplicationContext(), UserDatabase.class, "tbl_users").
                         addCallback(sOnOpenCallback)
                         .fallbackToDestructiveMigration()
+                        .allowMainThreadQueries()
                         .build();
             }
         }
