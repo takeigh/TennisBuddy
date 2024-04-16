@@ -15,4 +15,7 @@
     <string name="create_match">Create Match</string>
     <string name="back_button_description">Back</string>
     <string name="location">Location:</string>
+    <string name="submit">Submit</string>
+    <string name="skill_level">Skill Level:</string>
+    <string name="confirm_password">Confirm Password:</string>
 </resources>
