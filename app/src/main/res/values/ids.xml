@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="textViewMatchTitle" type="id">ViewMatchTitle</item>
+    <item name="textViewMatchDate" type="id">ViewMatchDate</item>
+    <item name="textViewMatchTime" type="id">ViewMatchTime</item>
+    <item name="textViewMatchLocation" type="id">ViewMatchLocation</item>
+    <item name="buttonEditMatch" type="id">EditMatch</item>
+</resources>
