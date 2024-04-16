@@ -1,59 +1,79 @@
-<!-- edit_profile_fragment.xml -->
-
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Name Input -->
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="name"
+        android:textSize="8pt"/>
+
+    <LinearLayout
+        android:id="@+id/nameContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/textViewName"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp">
+
+        <EditText
+            android:id="@+id/editFirstName"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint="First Name"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editLastName"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint="Last Name"
+            android:inputType="textPersonName" />
+    </LinearLayout>
+
 
     <TextView
-        android:id="@+id/textViewEditProfileTitle"
+        android:id="@+id/textViewSkillLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit Profile"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
-
-    <EditText
-        android:id="@+id/editTextFullName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Full Name"
-        android:layout_below="@id/textViewEditProfileTitle"
+        android:layout_below="@id/nameContainer"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:inputType="textPersonName" />
+        android:layout_marginBottom="16dp"
+        android:text="skill_level"
+        android:textSize="8pt" />
 
-    <EditText
-        android:id="@+id/editTextEmail"
+    <Spinner
+        android:id="@+id/spinnerSkillLevel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email Address"
-        android:layout_below="@id/editTextFullName"
-        android:layout_marginTop="8dp"
+        android:layout_below="@id/textViewSkillLevel"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:inputType="textEmailAddress" />
+        android:layout_marginBottom="16dp"
+        android:prompt="select_skill_level" />
 
-    <EditText
-        android:id="@+id/editTextPhoneNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Phone Number"
-        android:layout_below="@id/editTextEmail"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:inputType="phone" />
-
+    <!-- Save Button -->
     <Button
-        android:id="@+id/buttonSaveChanges"
-        android:layout_width="wrap_content"
+        android:id="@+id/buttonSave"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save Changes"
-        android:layout_below="@id/editTextPhoneNumber"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Save Changes" />
 
 </RelativeLayout>
