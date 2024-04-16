@@ -15,4 +15,9 @@
     <string name="create_match">Create Match</string>
     <string name="back_button_description">Back</string>
     <string name="location">Location:</string>
+    <string name="match_details">Match Details</string>
+    <string name="date">Date:</string>
+    <string name="time">Time:</string>
+    <string name="locationofmatch">Location:</string>
+    <string name="edit_match">Edit Match</string>
 </resources>
