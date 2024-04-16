@@ -1,4 +1,4 @@
-package com.example.tennisbuddy;
+package com.example.tennisbuddy.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.tennisbuddy.R;
 import com.example.tennisbuddy.databases.KeepUserDatabase;
 import com.example.tennisbuddy.databases.UserDatabase;
 import com.example.tennisbuddy.entities.KeepUser;
