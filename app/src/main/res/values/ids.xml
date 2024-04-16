@@ -5,4 +5,9 @@
     <item name="textViewMatchTime" type="id">ViewMatchTime</item>
     <item name="textViewMatchLocation" type="id">ViewMatchLocation</item>
     <item name="buttonEditMatch" type="id">EditMatch</item>
+    <item name="textViewEditProfileTitle" type="id">Edit Profile</item>
+    <item name="editTextFullName" type="id">Full Name</item>
+    <item name="buttonSaveChanges" type="id">Sava</item>
+    <item name="editTextPhoneNumber" type="id">TextPhoneNumber</item>
+    <item name="editTextEmail" type="id">Text Email</item>
 </resources>

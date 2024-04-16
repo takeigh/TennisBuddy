@@ -20,4 +20,10 @@
     <string name="time">Time:</string>
     <string name="locationofmatch">Location:</string>
     <string name="edit_match">Edit Match</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="email_address">Email Address</string>
+    <string name="full_name">Full Name</string>
+    <string name="browse_matches">Browse Matches</string>
 </resources>
