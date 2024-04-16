@@ -7,6 +7,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.example.tennisbuddy.databases.UserDatabase;
+import com.example.tennisbuddy.daos.UserDao;
+import com.example.tennisbuddy.databases.UserDatabase;
+import com.example.tennisbuddy.entities.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,7 +67,34 @@ public class EditProfile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
+
+        EditText editFirstName = view.findViewById(R.id.editFirstName);
+        EditText editLastName = view.findViewById(R.id.editLastName);
+        Spinner spinnerSkillLevel = view.findViewById(R.id.spinnerSkillLevel);
+        Button buttonSave = view.findViewById(R.id.buttonSave);
+
+        buttonSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String firstName = editFirstName.getText().toString();
+                String lastName = editLastName.getText().toString();
+                String skillLevel = spinnerSkillLevel.getSelectedItem().toString();
+
+                // Create a new User object with the new data
+                User user = new User();
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                //user.setSkillLevel(skillLevel);
+
+                // Get the UserDao and update the user in the database
+                UserDatabase userDatabase = UserDatabase.getDatabase(getContext());
+                UserDao userDao = userDatabase.userDao();
+                userDao.addUser(user);
+
+                Toast.makeText(getContext(), "Profile saved!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        return view;
     }
 }

@@ -1,24 +1,34 @@
-package com.example.tennisbuddy.fragments;
+package com.example.tennisbuddy;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.tennisbuddy.R;
-
+import com.example.tennisbuddy.daos.UserDao;
+import com.example.tennisbuddy.databases.UserDatabase;
+import com.example.tennisbuddy.entities.User;
+import com.example.tennisbuddy.daos.UserDao;
+import com.example.tennisbuddy.databases.UserDatabase;
+import com.example.tennisbuddy.entities.User;
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FragmentViewProfile#newInstance} factory method to
+ * Use the {@link ViewProfile#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentViewProfile extends Fragment {
-
+public class ViewProfile extends Fragment {
+    private TextView firstNameTextView;
+    private TextView lastNameTextView;
+    private TextView skillLevelTextView;
+    private TextView emailTextView;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -28,7 +38,7 @@ public class FragmentViewProfile extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public FragmentViewProfile() {
+    public ViewProfile() {
         // Required empty public constructor
     }
 
@@ -41,8 +51,8 @@ public class FragmentViewProfile extends Fragment {
      * @return A new instance of fragment ViewProfile.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentViewProfile newInstance(String param1, String param2) {
-        FragmentViewProfile fragment = new FragmentViewProfile();
+    public static ViewProfile newInstance(String param1, String param2) {
+        ViewProfile fragment = new ViewProfile();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -65,15 +75,28 @@ public class FragmentViewProfile extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_view_profile, container, false);
 
-        Button addFriendButton = view.findViewById(R.id.addFriendButton);
-        addFriendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addFriend();
-            }
-        });
+        firstNameTextView = view.findViewById(R.id.firstNameTextView);
+        lastNameTextView = view.findViewById(R.id.lastNameTextView);
+        skillLevelTextView = view.findViewById(R.id.skillLevelTextView);
+        emailTextView = view.findViewById(R.id.email);
+
+        // Rest of your code...
 
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        UserDatabase userDatabase = UserDatabase.getDatabase(getContext());
+        UserDao userDao = userDatabase.userDao();
+        User user = userDao.getUserByID(1); // Replace 1 with the actual user ID
+
+        firstNameTextView.setText(user.getFirstName());
+        lastNameTextView.setText(user.getLastName());
+        // skillLevelTextView.setText(user.getSkillLevel()); // Uncomment this line once you add a getSkillLevel() method in your User class
+        emailTextView.setText(user.getEmail());
     }
 
     private void addFriend() {
