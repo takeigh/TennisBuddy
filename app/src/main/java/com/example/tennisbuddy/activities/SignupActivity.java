@@ -1,9 +1,11 @@
-package com.example.tennisbuddy;
+package com.example.tennisbuddy.activities;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.tennisbuddy.R;
 
 public class SignupActivity extends AppCompatActivity {
     @Override
