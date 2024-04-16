@@ -1,5 +1,6 @@
 package com.example.tennisbuddy.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,5 +49,8 @@ public class SignupActivity extends AppCompatActivity {
 
     public void register(String f, String l, String e, String p, String cP){
         //logic to register user here
+
+        Intent intent = new Intent(this, LandingActivity.class);
+        startActivity(intent);
     }
 }
