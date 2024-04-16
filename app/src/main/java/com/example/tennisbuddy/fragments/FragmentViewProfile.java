@@ -1,4 +1,4 @@
-package com.example.tennisbuddy;
+package com.example.tennisbuddy.fragments;
 
 import android.os.Bundle;
 
@@ -19,12 +19,8 @@ import com.example.tennisbuddy.entities.User;
 import com.example.tennisbuddy.daos.UserDao;
 import com.example.tennisbuddy.databases.UserDatabase;
 import com.example.tennisbuddy.entities.User;
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ViewProfile#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ViewProfile extends Fragment {
+
+public class FragmentViewProfile extends Fragment {
     private TextView firstNameTextView;
     private TextView lastNameTextView;
     private TextView skillLevelTextView;
@@ -38,7 +34,7 @@ public class ViewProfile extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public ViewProfile() {
+    public FragmentViewProfile() {
         // Required empty public constructor
     }
 
@@ -51,8 +47,8 @@ public class ViewProfile extends Fragment {
      * @return A new instance of fragment ViewProfile.
      */
     // TODO: Rename and change types and number of parameters
-    public static ViewProfile newInstance(String param1, String param2) {
-        ViewProfile fragment = new ViewProfile();
+    public static FragmentViewProfile newInstance(String param1, String param2) {
+        FragmentViewProfile fragment = new FragmentViewProfile();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -70,20 +66,20 @@ public class ViewProfile extends Fragment {
     }
 
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_view_profile, container, false);
-
-        firstNameTextView = view.findViewById(R.id.firstNameTextView);
-        lastNameTextView = view.findViewById(R.id.lastNameTextView);
-        skillLevelTextView = view.findViewById(R.id.skillLevelTextView);
-        emailTextView = view.findViewById(R.id.email);
-
-        // Rest of your code...
-
-        return view;
-    }
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                             Bundle savedInstanceState) {
+//        View view = inflater.inflate(R.layout.fragment_view_profile, container, false);
+//
+//        firstNameTextView = view.findViewById(R.id.firstNameTextView);
+//        lastNameTextView = view.findViewById(R.id.lastNameTextView);
+//        skillLevelTextView = view.findViewById(R.id.skillLevelTextView);
+//        emailTextView = view.findViewById(R.id.email);
+//
+//        // Rest of your code...
+//
+//        return view;
+//    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
