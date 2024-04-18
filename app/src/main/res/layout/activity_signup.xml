@@ -168,5 +168,12 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="600dp"/>
 
+    <Button
+        android:id="@+id/buttonBackSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:layout_margin="15dp" />
+
 
 </RelativeLayout>

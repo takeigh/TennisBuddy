@@ -9,7 +9,7 @@
         android:id="@+id/textViewName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="name"
+        android:text="Name"
         android:textSize="8pt"/>
 
     <LinearLayout
@@ -50,7 +50,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:text="skill_level"
+        android:text="Skill Level"
         android:textSize="8pt" />
 
     <Spinner
@@ -61,8 +61,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:prompt="select_skill_level" />
+        android:layout_marginBottom="16dp" />
 
     <!-- Save Button -->
     <Button

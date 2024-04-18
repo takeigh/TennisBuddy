@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="textViewMatchTitle" type="id">ViewMatchTitle</item>
-    <item name="textViewMatchDate" type="id">ViewMatchDate</item>
-    <item name="textViewMatchTime" type="id">ViewMatchTime</item>
-    <item name="textViewMatchLocation" type="id">ViewMatchLocation</item>
-    <item name="buttonEditMatch" type="id">EditMatch</item>
-    <item name="textViewEditProfileTitle" type="id">Edit Profile</item>
-    <item name="editTextFullName" type="id">Full Name</item>
-    <item name="buttonSaveChanges" type="id">Sava</item>
-    <item name="editTextPhoneNumber" type="id">TextPhoneNumber</item>
-    <item name="editTextEmail" type="id">Text Email</item>
+    <item name="textViewMatchTitle" type="id" />
+    <item name="textViewMatchDate" type="id" />
+    <item name="textViewMatchTime" type="id" />
+    <item name="textViewMatchLocation" type="id" />
+    <item name="buttonEditMatch" type="id" />
+    <item name="textViewEditProfileTitle" type="id" />
+    <item name="editTextFullName" type="id" />
+    <item name="buttonSaveChanges" type="id" />
+    <item name="editTextPhoneNumber" type="id" />
+    <item name="editTextEmail" type="id" />
 </resources>

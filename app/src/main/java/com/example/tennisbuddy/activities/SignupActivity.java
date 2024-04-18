@@ -14,23 +14,40 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.tennisbuddy.R;
 
 public class SignupActivity extends AppCompatActivity {
-    ImageView logo = findViewById(R.id.imageLogo);
-    EditText fName = findViewById(R.id.editTextfName);
-    EditText lName = findViewById(R.id.editTextlName);
-    EditText email = findViewById(R.id.editTextEmailAddress);
-    EditText password = findViewById(R.id.editTextPassword);
-    EditText confirmPassword = findViewById(R.id.editTextConfirmPassword);
-    Spinner difficulty = findViewById(R.id.spinnerDifficulty);
-    Button submit = findViewById(R.id.buttonSubmit);
+    ImageView logo;
+    EditText fName;
+    EditText lName;
+    EditText email;
+    EditText password;
+    EditText confirmPassword;
+    Spinner difficulty;
+    Button submit;
+    Button back;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+        prepComponents();
+    }
+
+    private void prepComponents() {
+        logo = findViewById(R.id.imageLogo);
         logo.setImageResource(R.drawable.logo);
-        //Add difficulty options to dropdown
-        submit.setOnClickListener(l -> {
-            submit();
-        });
+
+        fName = findViewById(R.id.editTextfName);
+        lName = findViewById(R.id.editTextlName);
+        email = findViewById(R.id.editTextEmailAddress);
+        password = findViewById(R.id.editTextPassword);
+        confirmPassword = findViewById(R.id.editTextConfirmPassword);
+        difficulty = findViewById(R.id.spinnerDifficulty);
+
+        submit = findViewById(R.id.buttonSubmit);
+        submit.setOnClickListener(l -> submit());
+
+        back = findViewById(R.id.buttonBackSignUp);
+        back.setOnClickListener(l -> finish());
     }
 
     public void submit(){
