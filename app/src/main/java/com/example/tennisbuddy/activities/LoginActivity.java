@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -16,6 +17,8 @@ import com.example.tennisbuddy.databases.KeepUserDatabase;
 import com.example.tennisbuddy.databases.UserDatabase;
 import com.example.tennisbuddy.entities.KeepUser;
 import com.example.tennisbuddy.entities.User;
+
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     EditText email;
@@ -32,9 +35,20 @@ public class LoginActivity extends AppCompatActivity {
 
         prepComponents();
 
+        printDB();
+
         if (KeepUserDatabase.getDatabase(this).keepUserDao().getKeepUser() != null) {
             Intent intent = new Intent(this, LandingActivity.class);
             startActivity(intent);
+        }
+    }
+
+    private void printDB() {
+        List<User> users = UserDatabase.getDatabase(this).userDao().getUsers();
+
+        Log.d("DEBUG", "Database Users:");
+        for (User u : users) {
+            Log.d("DEBUG", u.getFirstName() + ", " + u.getLastName());
         }
     }
 
@@ -78,16 +92,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void forgot(){
-        String emailInput = email.getText().toString();
-        User user = UserDatabase.getDatabase(this).userDao().getUserByEmail(emailInput);
-
-        if (user != null) {
-            Toast.makeText(this, "Password: " + user.getPassword(), Toast.LENGTH_LONG).show();
-            login(emailInput, user.getPassword());
-        } else {
-            Toast.makeText(this, "Invalid Email!", Toast.LENGTH_LONG).show();
-            clearFields();
-        }
+        Intent intent = new Intent(this, ForgotPasswordActivity.class);
+        startActivity(intent);
     }
 
     private void signup(){

@@ -33,8 +33,7 @@
             android:id="@+id/textfName"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
-
-            android:text="Confirm Password:"
+            android:text="First Name:"
             />
 
         <EditText
@@ -42,7 +41,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPassword"
             tools:layout_editor_absoluteY="236dp" />
     </LinearLayout>
     <LinearLayout
@@ -55,8 +53,7 @@
             android:id="@+id/textlName"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
-
-            android:text="Confirm Password:"
+            android:text="Last Name:"
             />
 
         <EditText
@@ -64,11 +61,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text"
-            tools:layout_editor_absoluteY="236dp" />
+            android:inputType="text"/>
     </LinearLayout>
-
-
 
     <LinearLayout
         android:id="@+id/email"
@@ -88,13 +82,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textEmailAddress"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="155dp" />
 
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/password"
@@ -106,7 +96,6 @@
             android:id="@+id/textPassword"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
-
             android:text="@string/password"
             />
 
@@ -118,6 +107,7 @@
             android:inputType="textPassword"
             tools:layout_editor_absoluteY="236dp" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/confirmPassword"
         android:layout_width="wrap_content"
@@ -127,7 +117,6 @@
             android:id="@+id/textConfirmPassword"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
-
             android:text="@string/confirm_password"
             />
 
@@ -145,7 +134,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-
         android:layout_marginTop="475dp"
         android:text="@string/skill_level"
         android:textSize="18sp" />
@@ -163,17 +151,16 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="Submit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="600dp"/>
 
     <Button
         android:id="@+id/buttonBackSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back"
-        android:layout_margin="15dp" />
-
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="Back" />
 
 </RelativeLayout>
