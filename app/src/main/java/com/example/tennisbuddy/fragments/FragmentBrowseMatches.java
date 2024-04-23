@@ -132,6 +132,7 @@ public class FragmentBrowseMatches extends Fragment {
             filteredMatchList.add(m);
         }
 
+        // Remove empty matches below as needed
         Match match = new Match();
         filteredMatchList.add(match);
 
