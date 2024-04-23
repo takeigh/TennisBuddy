@@ -10,12 +10,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import com.example.tennisbuddy.R;
 
 public class FragmentCreateMatch extends Fragment {
 
     Button back;
+    Button create;
+    Spinner spinnerCourts;
+    Spinner spinnerMonth;
+    Spinner spinnerDay;
+    Spinner spinnerYear;
+    Spinner spinnerHour;
+    Spinner spinnerMinute;
+    Spinner spinnerAMPM;
+    Spinner spinnerType;
+
 
     public static FragmentCreateMatch newInstance() {
         return new FragmentCreateMatch();
