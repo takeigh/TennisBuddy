@@ -3,6 +3,7 @@ package com.example.tennisbuddy.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,8 +15,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
+import com.example.tennisbuddy.data.ExperienceLevel;
+import com.example.tennisbuddy.data.MatchType;
 import com.example.tennisbuddy.R;
-import com.example.tennisbuddy.activities.LandingActivity;
 import com.example.tennisbuddy.adapters.MatchDisplayAdapter;
 import com.example.tennisbuddy.databases.CourtDatabase;
 import com.example.tennisbuddy.databases.MatchDatabase;
@@ -23,6 +25,7 @@ import com.example.tennisbuddy.entities.Court;
 import com.example.tennisbuddy.entities.Match;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FragmentBrowseMatches extends Fragment {
@@ -74,15 +77,13 @@ public class FragmentBrowseMatches extends Fragment {
 
         // Need to populate spinner options
         experienceSpinner = view.findViewById(R.id.spinnerExperienceFilter);
-        experienceSpinner.setAdapter(new ArrayAdapter<>(getContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, new String[] {
-                "No Preference",
-                "Beginner",
-                "Intermediate",
-                "Expert"
-        }));
+        List<String> optionsExperience = new ArrayList<>();
+        optionsExperience.add("No Preference");
+        optionsExperience.addAll(Arrays.asList(ExperienceLevel.experienceLevels));
+        experienceSpinner.setAdapter(new ArrayAdapter<>(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, optionsExperience));
 
         distanceSpinner = view.findViewById(R.id.spinnerDistanceFilter);
-        distanceSpinner.setAdapter(new ArrayAdapter<>(getContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, new String[] {
+        distanceSpinner.setAdapter(new ArrayAdapter<>(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, new String[] {
                 "No Preference",
                 "<10",
                 "<25",
@@ -90,11 +91,10 @@ public class FragmentBrowseMatches extends Fragment {
         }));
 
         typeSpinner = view.findViewById(R.id.spinnerTypeFilter);
-        typeSpinner.setAdapter(new ArrayAdapter<>(getContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, new String[] {
-                "No Preference",
-                "Singles",
-                "Doubles"
-        }));
+        List<String> optionsType = new ArrayList<>();
+        optionsType.add("No Preference");
+        optionsType.addAll(Arrays.asList(MatchType.matchTypes));
+        typeSpinner.setAdapter(new ArrayAdapter<>(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, optionsType));
 
         sortSpinner = view.findViewById(R.id.spinnerSort);
         sortSpinner.setAdapter(new ArrayAdapter<>(getContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, new String[] {
@@ -120,8 +120,10 @@ public class FragmentBrowseMatches extends Fragment {
     }
 
     private void newMatch() {
-        LandingActivity activity = new LandingActivity();
-        activity.setFragment("Create Match", null);
+        FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragmentContainerMain, new FragmentCreateMatch());
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     private void populateMatches() {

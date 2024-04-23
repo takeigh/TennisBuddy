@@ -8,25 +8,40 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/black">
 
         <ImageButton
             android:id="@+id/btnBrowse"
+            android:background="@color/dark_green"
+            android:src="@drawable/magnifying_glass"
+            android:scaleType="fitCenter"
+            android:padding="15dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_marginEnd="2dp"/>
 
         <ImageButton
             android:id="@+id/btnChat"
+            android:background="@color/dark_green"
+            android:src="@drawable/chat_bubble"
+            android:scaleType="fitCenter"
+            android:padding="15dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
 
         <ImageButton
             android:id="@+id/btnProfile"
+            android:background="@color/dark_green"
+            android:src="@drawable/profile"
+            android:scaleType="fitCenter"
+            android:padding="15dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:layout_marginStart="2dp"/>
 
     </LinearLayout>
 </FrameLayout>
