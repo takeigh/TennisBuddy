@@ -34,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         prepComponents();
-
         printDB();
 
         if (KeepUserDatabase.getDatabase(this).keepUserDao().getKeepUser() != null) {

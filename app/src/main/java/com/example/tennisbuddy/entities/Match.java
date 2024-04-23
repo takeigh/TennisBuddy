@@ -64,6 +64,12 @@ public class Match {
     @ColumnInfo(name = "minute")
     private int minute;
 
+    @ColumnInfo(name = "experience")
+    private String experienceLevel;
+
+    @ColumnInfo(name = "type")
+    private String matchType;
+
     public int getMatchId() {
         return matchId;
     }
@@ -150,5 +156,21 @@ public class Match {
 
     public void setMinute(int minute) {
         this.minute = minute;
+    }
+
+    public String getExperienceLevel() {
+        return experienceLevel;
+    }
+
+    public void setExperienceLevel(String experienceLevel) {
+        this.experienceLevel = experienceLevel;
+    }
+
+    public String getMatchType() {
+        return matchType;
+    }
+
+    public void setMatchType(String matchType) {
+        this.matchType = matchType;
     }
 }

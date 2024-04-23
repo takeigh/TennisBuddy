@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.tennisbuddy.fragments.FragmentCreateMatch;
 import com.example.tennisbuddy.R;
 import com.example.tennisbuddy.fragments.FragmentBrowseMatches;
 import com.example.tennisbuddy.fragments.FragmentChatList;
@@ -23,7 +24,7 @@ public class LandingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_landing);
 
         initialization();
-        setFragment("Browse");
+        setFragment("Browse", null);
     }
 
     private void initialization() {
@@ -32,39 +33,51 @@ public class LandingActivity extends AppCompatActivity {
         fragManager.beginTransaction()
                 .add(R.id.fragmentContainerMenu, new FragmentMenuBar())
                 .commit();
-
         currentFrag = "Browse";
+
         fragManager.beginTransaction()
                 .add(R.id.fragmentContainerMain, new FragmentBrowseMatches())
                 .commit();
     }
 
-    public void setFragment(String fragName) {
-        switch (fragName) {
-            case "Browse":
-                if (currentFrag.equals(fragName)) {
+    public void setFragment(String fragName, Bundle bundle) {
+        if (!currentFrag.equals(fragName)) {
+            currentFrag = fragName;
+
+            switch (fragName) {
+                case "Browse":
                     fragManager.beginTransaction()
                             .replace(R.id.fragmentContainerMain, new FragmentBrowseMatches())
                             .commit();
-                }
-                break;
-            case "Chat":
-                if (currentFrag.equals(fragName)) {
+                    break;
+                case "Chat List":
                     fragManager.beginTransaction()
                             .replace(R.id.fragmentContainerMain, new FragmentChatList())
                             .commit();
-                }
-                break;
-            case "Profile":
-                if (currentFrag.equals(fragName)) {
+                    break;
+                case "Profile":
                     fragManager.beginTransaction()
                             .replace(R.id.fragmentContainerMain, new FragmentViewProfile())
                             .commit();
-                }
-                break;
-            default:
-                Toast.makeText(this, "Something went wrong changing views", Toast.LENGTH_LONG).show();
-                break;
+                    break;
+                case "New Match":
+                    fragManager.beginTransaction()
+                            .replace(R.id.fragmentContainerMain, new FragmentCreateMatch())
+                            .commit();
+                    break;
+                case "Chat Room":
+                    //FragmentChat chatFrag = FragmentChat.newInstance(bundle);
+
+//                    fragManager.beginTransaction()
+//                            .replace(R.id.fragmentContainerMain, chatFrag)
+//                            .commit();
+                    break;
+                default:
+                    Toast.makeText(this, "Something went wrong changing fragments", Toast.LENGTH_LONG).show();
+                    break;
+            }
+
+            currentFrag = fragName;
         }
     }
 }

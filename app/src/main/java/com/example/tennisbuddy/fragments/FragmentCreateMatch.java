@@ -1,6 +1,4 @@
-package com.example.tennisbuddy;
-
-import androidx.lifecycle.ViewModelProvider;
+package com.example.tennisbuddy.fragments;
 
 import android.os.Bundle;
 
@@ -12,9 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class CreateMatch extends Fragment {
-    public static CreateMatch newInstance() {
-        return new CreateMatch();
+import com.example.tennisbuddy.R;
+
+public class FragmentCreateMatch extends Fragment {
+    public static FragmentCreateMatch newInstance() {
+        return new FragmentCreateMatch();
     }
 
     @Override
