@@ -63,12 +63,7 @@ public class FragmentBrowseMatches extends Fragment {
         View view = inflater.inflate(R.layout.fragment_browse_matches, container, false);
 
         prepComponents(view);
-//        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        // List<TennisMatch> tennisMatches = new ArrayList<>(); // populate/replace this
-        // TennisMatch Adapter is a class that holds tennis match data-Not created yet.
-//        TennisMatchAdapter adapter = new TennisMatchAdapter(tennisMatches);
-//        recyclerView.setAdapter(adapter);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         return view;
     }
 
@@ -131,30 +126,27 @@ public class FragmentBrowseMatches extends Fragment {
 
         for (Match m : matchList) {
             // Filter matches
-            filteredMatchList.add(m);
+            if (true) {
+                filteredMatchList.add(m);
+            }
         }
 
-        // Remove empty matches below as needed
-        Match match = new Match();
-        filteredMatchList.add(match);
+        filteredMatchList = sortMatches(filteredMatchList);
 
-        Match match2 = new Match();
-        filteredMatchList.add(match2);
-
-        Match match3 = new Match();
-        filteredMatchList.add(match3);
+        // Remove empty matches below when release
+        for (int i = 0; i < 20; i++) {
+            Match m = new Match();
+            filteredMatchList.add(m);
+        }
 
         MatchDisplayAdapter adapter = new MatchDisplayAdapter(filteredMatchList);
         matchView.setAdapter(adapter);
     }
 
-    private double getDistance(Match match) {
-        Court court = CourtDatabase.getDatabase(getContext()).courtDao().getCourtById(match.getCourtId());
+    private List<Match> sortMatches(List<Match> matchList) {
+        // Sort Logic
 
-        // Get distance from current location to court
-        double distance = 0;
-
-        return distance;
+        return matchList;
     }
 
     private void toggleFilter() {
