@@ -43,8 +43,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void printDB() {
-//        KeepUserDatabase.getDatabase(this).keepUserDao().deleteUsers();
-
         List<User> users = UserDatabase.getDatabase(this).userDao().getUsers();
 
         Log.d("DEBUG", "Database Users:");
