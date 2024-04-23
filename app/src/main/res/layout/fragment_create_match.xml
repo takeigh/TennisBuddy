@@ -1,85 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textViewLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/backButton"
-        android:layout_margin="20dp"
-        android:text="@string/location"
-        android:textSize="8pt"/>
-
-    <!-- Location Dropdown -->
-    <Spinner
-        android:id="@+id/spinnerLocation"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textViewLocation"
-        android:layout_margin="16dp"
-        android:prompt="@string/select_location" />
+        android:orientation="horizontal">
 
-    <!-- Date and Time Selection -->
-    <TextView
-        android:id="@+id/textViewDateTime"
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="@string/back_button_description"
+            android:layout_margin="15dp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:text="Create Match"
+            android:textStyle="bold"
+            android:textSize="12pt"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_margin="15dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/date_and__time"
-        android:textSize="8pt"
-        android:layout_below="@id/spinnerLocation"
-        android:layout_margin="20dp"/>
+        android:orientation="horizontal">
 
-    <!-- Date and Time Pickers -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="15dp"
+            android:text="@string/location"
+            android:textStyle="bold"
+            android:textSize="8pt"/>
+
+        <!-- Location Dropdown -->
+        <Spinner
+            android:id="@+id/spinnerLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_margin="15dp"
+            android:prompt="@string/select_location" />
+
+    </LinearLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="225dp"
+        android:layout_margin="15dp"
+        />
+
+    <!-- Date Selection -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Date:"
+            android:textStyle="bold"
+            android:textSize="8pt"
+            android:layout_margin="15dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerMonth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerDay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerYear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="5dp"/>
+
+    </LinearLayout>
+
+
+    <!-- Time Pickers -->
     <LinearLayout
         android:id="@+id/dateTimeContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/textViewDateTime"
-        android:layout_margin="8dp">
+        android:gravity="center">
 
-        <!-- Date Picker -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Time:"
+            android:textStyle="bold"
+            android:textSize="8pt"
+            android:layout_margin="15dp"/>
+
         <Spinner
-            android:id="@+id/spinnerDate"
+            android:id="@+id/spinnerHour"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:prompt="@string/select_date" />
+            android:prompt="@string/select_date"
+            android:layout_margin="5dp"/>
 
-        <!-- Time Picker -->
         <Spinner
-            android:id="@+id/spinnerTime"
+            android:id="@+id/spinnerMinute"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:prompt="@string/select_time"/>
+            android:prompt="@string/select_time"
+            android:layout_margin="5dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerAMPM"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="15dp"/>
+
     </LinearLayout>
 
-    <!-- Match Type Dropdown -->
-    <Spinner
-        android:id="@+id/spinnerMatchType"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/dateTimeContainer"
-        android:layout_margin="20dp"
-        android:prompt="@string/select_match_type"/>
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textViewType"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Match Type:"
+            android:textStyle="bold"
+            android:textSize="8pt"
+            android:layout_margin="15dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerMatchType"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_below="@id/textViewType"
+            android:layout_margin="15dp"
+            android:prompt="@string/select_match_type"/>
+
+    </LinearLayout>
 
     <!-- Create Match Button -->
     <Button
         android:id="@+id/buttonCreateMatch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
         android:text="@string/create_match" />
 
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/back_button_description"/>
-
-</RelativeLayout>
+</LinearLayout>
