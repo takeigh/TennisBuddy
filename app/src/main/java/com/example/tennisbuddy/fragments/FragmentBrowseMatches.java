@@ -4,18 +4,19 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.example.tennisbuddy.R;
 import com.example.tennisbuddy.activities.LandingActivity;
+import com.example.tennisbuddy.adapters.MatchDisplayAdapter;
 import com.example.tennisbuddy.databases.CourtDatabase;
 import com.example.tennisbuddy.databases.MatchDatabase;
 import com.example.tennisbuddy.entities.Court;
@@ -72,10 +73,34 @@ public class FragmentBrowseMatches extends Fragment {
         matchList = MatchDatabase.getDatabase(getContext()).matchDao().getMatches();
 
         // Need to populate spinner options
-        experienceSpinner = view.findViewById(R.id.spinnerExperieneFilter);
+        experienceSpinner = view.findViewById(R.id.spinnerExperienceFilter);
+        experienceSpinner.setAdapter(new ArrayAdapter<>(getContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, new String[] {
+                "No Preference",
+                "Beginner",
+                "Intermediate",
+                "Expert"
+        }));
+
         distanceSpinner = view.findViewById(R.id.spinnerDistanceFilter);
+        distanceSpinner.setAdapter(new ArrayAdapter<>(getContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, new String[] {
+                "No Preference",
+                "<10",
+                "<25",
+                "<50"
+        }));
+
         typeSpinner = view.findViewById(R.id.spinnerTypeFilter);
+        typeSpinner.setAdapter(new ArrayAdapter<>(getContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, new String[] {
+                "No Preference",
+                "Singles",
+                "Doubles"
+        }));
+
         sortSpinner = view.findViewById(R.id.spinnerSort);
+        sortSpinner.setAdapter(new ArrayAdapter<>(getContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, new String[] {
+                "Increasing Distance",
+                "Decreasing Distance"
+        }));
 
         createMatch = view.findViewById(R.id.buttonNewMatch);
         createMatch.setOnClickListener(l -> newMatch());
@@ -104,8 +129,20 @@ public class FragmentBrowseMatches extends Fragment {
 
         for (Match m : matchList) {
             // Filter matches
+            filteredMatchList.add(m);
         }
 
+        Match match = new Match();
+        filteredMatchList.add(match);
+
+        Match match2 = new Match();
+        filteredMatchList.add(match2);
+
+        Match match3 = new Match();
+        filteredMatchList.add(match3);
+
+        MatchDisplayAdapter adapter = new MatchDisplayAdapter(filteredMatchList);
+        matchView.setAdapter(adapter);
     }
 
     private double getDistance(Match match) {

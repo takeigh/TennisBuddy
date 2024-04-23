@@ -31,6 +31,7 @@ public abstract class MatchDatabase extends RoomDatabase {
                 instance = Room.databaseBuilder(context.getApplicationContext(), MatchDatabase.class, "tbl_matches").
                         addCallback(sOnOpenCallback)
                         .fallbackToDestructiveMigration()
+                        .allowMainThreadQueries()
                         .build();
             }
         }

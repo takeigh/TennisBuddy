@@ -33,6 +33,7 @@ public class LandingActivity extends AppCompatActivity {
         fragManager.beginTransaction()
                 .add(R.id.fragmentContainerMenu, new FragmentMenuBar())
                 .commit();
+        currentFrag = "Browse";
 
         fragManager.beginTransaction()
                 .add(R.id.fragmentContainerMain, new FragmentBrowseMatches())
@@ -75,6 +76,8 @@ public class LandingActivity extends AppCompatActivity {
                     Toast.makeText(this, "Something went wrong changing fragments", Toast.LENGTH_LONG).show();
                     break;
             }
+
+            currentFrag = fragName;
         }
     }
 }
