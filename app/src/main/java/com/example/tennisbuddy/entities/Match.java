@@ -7,29 +7,7 @@ import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity (tableName = "match",
-        foreignKeys = {
-            @ForeignKey(entity = User.class,
-                        parentColumns = "userId",
-                        childColumns = "host_id",
-                        onDelete = ForeignKey.CASCADE),
-            @ForeignKey(entity = Court.class,
-                        parentColumns = "courtId",
-                        childColumns = "court_id",
-                        onDelete = ForeignKey.CASCADE),
-            @ForeignKey(entity = User.class,
-                        parentColumns = "userId",
-                        childColumns = "player2",
-                        onDelete = ForeignKey.CASCADE),
-            @ForeignKey(entity = User.class,
-                        parentColumns = "userId",
-                        childColumns = "player3",
-                        onDelete = ForeignKey.CASCADE),
-            @ForeignKey(entity = User.class,
-                        parentColumns = "userId",
-                        childColumns = "player4",
-                        onDelete = ForeignKey.CASCADE),
-        })
+@Entity
 public class Match {
     @PrimaryKey(autoGenerate = true)
     private int matchId;

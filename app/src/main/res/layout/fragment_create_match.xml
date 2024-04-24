@@ -55,8 +55,8 @@
 
     </LinearLayout>
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/map"
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapCreate"
         android:layout_width="match_parent"
         android:layout_height="225dp"
         android:layout_margin="15dp"
@@ -115,7 +115,7 @@
         <Spinner
             android:id="@+id/spinnerHour"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
             android:prompt="@string/select_date"
             android:layout_margin="5dp"/>
@@ -123,7 +123,7 @@
         <Spinner
             android:id="@+id/spinnerMinute"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
             android:prompt="@string/select_time"
             android:layout_margin="5dp"/>
@@ -132,7 +132,7 @@
             android:id="@+id/spinnerAMPM"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="15dp"/>
 

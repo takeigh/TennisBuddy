@@ -15,30 +15,15 @@
         android:layout_gravity="center_vertical|end"
         android:layout_margin="15dp"/>
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/nameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:gravity="center"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp">
-
-        <TextView
-            android:id="@+id/firstNameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="First Name"
-            android:textSize="12pt"
-            android:layout_marginEnd="10dp"/>
-
-        <TextView
-            android:id="@+id/lastNameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Last Name"
-            android:textSize="12pt"
-            android:layout_marginStart="10dp"/>
-
-    </LinearLayout>
+        android:text="Name"
+        android:textSize="12pt"
+        android:layout_margin="15dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,7 +1,9 @@
 package com.example.tennisbuddy.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -14,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.tennisbuddy.data.ExperienceLevel;
 import com.example.tennisbuddy.data.MatchType;
@@ -23,12 +26,13 @@ import com.example.tennisbuddy.databases.CourtDatabase;
 import com.example.tennisbuddy.databases.MatchDatabase;
 import com.example.tennisbuddy.entities.Court;
 import com.example.tennisbuddy.entities.Match;
+import com.example.tennisbuddy.listeners.OnClickMatchListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FragmentBrowseMatches extends Fragment {
+public class FragmentBrowseMatches extends Fragment implements OnClickMatchListener {
     Button createMatch;
     Button filter;
     Button sort;
@@ -40,6 +44,7 @@ public class FragmentBrowseMatches extends Fragment {
     Spinner distanceSpinner;
     Spinner typeSpinner;
     Spinner sortSpinner;
+    Context context;
 
     public FragmentBrowseMatches() {
         // Required empty public constructor
@@ -53,8 +58,11 @@ public class FragmentBrowseMatches extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
 
-
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
     }
 
     @Override
@@ -68,6 +76,7 @@ public class FragmentBrowseMatches extends Fragment {
     }
 
     private void prepComponents(View view) {
+        context = getContext();
         matchList = MatchDatabase.getDatabase(getContext()).matchDao().getMatches();
 
         // Need to populate spinner options
@@ -133,13 +142,7 @@ public class FragmentBrowseMatches extends Fragment {
 
         filteredMatchList = sortMatches(filteredMatchList);
 
-        // Remove empty matches below when release
-        for (int i = 0; i < 20; i++) {
-            Match m = new Match();
-            filteredMatchList.add(m);
-        }
-
-        MatchDisplayAdapter adapter = new MatchDisplayAdapter(filteredMatchList);
+        MatchDisplayAdapter adapter = new MatchDisplayAdapter(filteredMatchList, this, context, requireActivity().getSupportFragmentManager());
         matchView.setAdapter(adapter);
     }
 
@@ -167,5 +170,10 @@ public class FragmentBrowseMatches extends Fragment {
         } else {
             sortLayout.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void onMatchClick(int position) {
+        Toast.makeText(getContext(), "Hit: " + position, Toast.LENGTH_LONG).show();
     }
 }

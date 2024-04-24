@@ -7,21 +7,7 @@ import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity (tableName = "chat",
-        foreignKeys = {
-            @ForeignKey(
-                    entity = User.class,
-                    parentColumns = "userId",
-                    childColumns = "sender",
-                    onDelete = ForeignKey.CASCADE
-            ),
-            @ForeignKey(
-                    entity = User.class,
-                    parentColumns = "userId",
-                    childColumns = "receiver",
-                    onDelete = ForeignKey.CASCADE
-            )
-        })
+@Entity
 public class Chat {
     @PrimaryKey(autoGenerate = true)
     private int messageId;

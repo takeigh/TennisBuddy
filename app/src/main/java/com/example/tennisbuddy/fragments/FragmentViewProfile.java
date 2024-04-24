@@ -27,12 +27,13 @@ import com.example.tennisbuddy.daos.UserDao;
 import com.example.tennisbuddy.databases.UserDatabase;
 import com.example.tennisbuddy.entities.User;
 
+import java.util.Objects;
+
 public class FragmentViewProfile extends Fragment {
 
     Button logOut;
     Button editProfile;
-    TextView firstNameTextView;
-    TextView lastNameTextView;
+    TextView NameTextView;
     TextView skillLevelTextView;
     TextView emailTextView;
 
@@ -69,11 +70,9 @@ public class FragmentViewProfile extends Fragment {
         KeepUser kUser = KeepUserDatabase.getDatabase(requireContext()).keepUserDao().getKeepUser();
         User user = UserDatabase.getDatabase(requireContext()).userDao().getUserByID(kUser.getUserId());
 
-        firstNameTextView = view.findViewById(R.id.firstNameTextView);
-        firstNameTextView.setText(user.getFirstName());
-
-        lastNameTextView = view.findViewById(R.id.lastNameTextView);
-        lastNameTextView.setText(user.getLastName());
+        NameTextView = view.findViewById(R.id.nameTextView);
+        String name = user.getFirstName() + " " + user.getLastName();
+        NameTextView.setText(name);
 
         skillLevelTextView = view.findViewById(R.id.skillLevelTextView);
         skillLevelTextView.setText(user.getExperienceLevel());
@@ -84,6 +83,7 @@ public class FragmentViewProfile extends Fragment {
         logOut = view.findViewById(R.id.buttonLogOut);
         logOut.setOnClickListener(l -> {
             KeepUserDatabase.getDatabase(requireContext()).keepUserDao().deleteUsers();
+            requireActivity().finish();
         });
 
         editProfile = view.findViewById(R.id.buttonEditProfile);

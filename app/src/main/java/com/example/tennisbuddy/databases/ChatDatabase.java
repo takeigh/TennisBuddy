@@ -12,7 +12,7 @@ import com.example.tennisbuddy.daos.ChatDao;
 import com.example.tennisbuddy.entities.Chat;
 import com.example.tennisbuddy.entities.User;
 
-@Database(entities = {User.class, Chat.class}, version = 1, exportSchema = false)
+@Database(entities = {Chat.class}, version = 3, exportSchema = false)
 public abstract class ChatDatabase extends RoomDatabase {
     public static ChatDatabase instance;
     public abstract ChatDao chatDao();
