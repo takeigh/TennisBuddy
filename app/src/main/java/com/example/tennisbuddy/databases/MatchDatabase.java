@@ -13,7 +13,7 @@ import com.example.tennisbuddy.entities.Court;
 import com.example.tennisbuddy.entities.Match;
 import com.example.tennisbuddy.entities.User;
 
-@Database(entities = {User.class, Court.class, Match.class}, version = 1, exportSchema = false)
+@Database(entities = {Match.class}, version = 3, exportSchema = false)
 public abstract class MatchDatabase extends RoomDatabase {
     public static MatchDatabase instance;
     public abstract MatchDao matchDao();

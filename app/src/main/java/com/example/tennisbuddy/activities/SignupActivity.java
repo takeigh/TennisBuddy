@@ -85,6 +85,7 @@ public class SignupActivity extends AppCompatActivity {
         user.setExperienceLevel(experience);
 
         UserDatabase.getDatabase(this).userDao().addUser(user);
+        user = UserDatabase.getDatabase(this).userDao().getUserByEmail(email);
 
         KeepUser keep = new KeepUser();
         keep.setUserId(user.getUserId());
@@ -93,5 +94,7 @@ public class SignupActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, LandingActivity.class);
         startActivity(intent);
+
+        finish();
     }
 }
