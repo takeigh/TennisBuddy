@@ -21,6 +21,7 @@ import com.example.tennisbuddy.activities.LoginActivity;
 import com.example.tennisbuddy.daos.UserDao;
 import com.example.tennisbuddy.databases.KeepUserDatabase;
 import com.example.tennisbuddy.databases.UserDatabase;
+import com.example.tennisbuddy.entities.KeepUser;
 import com.example.tennisbuddy.entities.User;
 import com.example.tennisbuddy.daos.UserDao;
 import com.example.tennisbuddy.databases.UserDatabase;
@@ -29,10 +30,11 @@ import com.example.tennisbuddy.entities.User;
 public class FragmentViewProfile extends Fragment {
 
     Button logOut;
-    private TextView firstNameTextView;
-    private TextView lastNameTextView;
-    private TextView skillLevelTextView;
-    private TextView emailTextView;
+    Button editProfile;
+    TextView firstNameTextView;
+    TextView lastNameTextView;
+    TextView skillLevelTextView;
+    TextView emailTextView;
 
     public FragmentViewProfile() {
         // Required empty public constructor
@@ -58,18 +60,33 @@ public class FragmentViewProfile extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_view_profile, container, false);
 
+        prepComponents(view);
+
+        return view;
+    }
+
+    private void prepComponents(View view) {
+        KeepUser kUser = KeepUserDatabase.getDatabase(requireContext()).keepUserDao().getKeepUser();
+        User user = UserDatabase.getDatabase(requireContext()).userDao().getUserByID(kUser.getUserId());
+
         firstNameTextView = view.findViewById(R.id.firstNameTextView);
+        firstNameTextView.setText(user.getFirstName());
+
         lastNameTextView = view.findViewById(R.id.lastNameTextView);
+        lastNameTextView.setText(user.getLastName());
+
         skillLevelTextView = view.findViewById(R.id.skillLevelTextView);
+        skillLevelTextView.setText(user.getExperienceLevel());
+
         emailTextView = view.findViewById(R.id.email);
+        emailTextView.setText(user.getEmail());
+
         logOut = view.findViewById(R.id.buttonLogOut);
         logOut.setOnClickListener(l -> {
             KeepUserDatabase.getDatabase(requireContext()).keepUserDao().deleteUsers();
         });
 
-        // Rest of your code...
-
-        return view;
+        editProfile = view.findViewById(R.id.buttonEditProfile);
     }
 
     private void addFriend() {
