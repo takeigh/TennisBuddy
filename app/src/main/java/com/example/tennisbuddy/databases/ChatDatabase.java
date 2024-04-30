@@ -12,7 +12,7 @@ import com.example.tennisbuddy.daos.ChatDao;
 import com.example.tennisbuddy.entities.Chat;
 import com.example.tennisbuddy.entities.User;
 
-@Database(entities = {Chat.class}, version = 3, exportSchema = false)
+@Database(entities = {Chat.class}, version = 4, exportSchema = false)
 public abstract class ChatDatabase extends RoomDatabase {
     public static ChatDatabase instance;
     public abstract ChatDao chatDao();
@@ -30,6 +30,7 @@ public abstract class ChatDatabase extends RoomDatabase {
                 instance = Room.databaseBuilder(context.getApplicationContext(), ChatDatabase.class, "tbl_chats").
                         addCallback(sOnOpenCallback)
                         .fallbackToDestructiveMigration()
+                        .allowMainThreadQueries()
                         .build();
             }
         }
