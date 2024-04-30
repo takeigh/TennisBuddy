@@ -113,9 +113,9 @@ public class FragmentBrowseMatches extends Fragment implements OnClickMatchListe
         distanceSpinner = view.findViewById(R.id.spinnerDistanceFilter);
         distanceSpinner.setAdapter(new ArrayAdapter<>(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, new String[] {
                 "No Preference",
-                "<10 miles",
-                "<25 miles",
-                "<50 miles"
+                "<2 miles",
+                "<5 miles",
+                "<10 miles"
         }));
         distanceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -221,29 +221,29 @@ public class FragmentBrowseMatches extends Fragment implements OnClickMatchListe
 
         String distanceSetting = distanceSpinner.getSelectedItem().toString();
         switch (distanceSetting) {
+            case "<2 miles":
+                for (Match m : step0) {
+                    double distance = distanceCalculation(m);
+
+                    if (distance <= 2.0) {
+                        step1.add(m);
+                    }
+                }
+                break;
+            case "<5 miles":
+                for (Match m : step0) {
+                    double distance = distanceCalculation(m);
+
+                    if (distance <= 5.0) {
+                        step1.add(m);
+                    }
+                }
+                break;
             case "<10 miles":
                 for (Match m : step0) {
                     double distance = distanceCalculation(m);
 
                     if (distance <= 10.0) {
-                        step1.add(m);
-                    }
-                }
-                break;
-            case "<25 miles":
-                for (Match m : step0) {
-                    double distance = distanceCalculation(m);
-
-                    if (distance <= 25.0) {
-                        step1.add(m);
-                    }
-                }
-                break;
-            case "<50 miles":
-                for (Match m : step0) {
-                    double distance = distanceCalculation(m);
-
-                    if (distance <= 50.0) {
                         step1.add(m);
                     }
                 }
