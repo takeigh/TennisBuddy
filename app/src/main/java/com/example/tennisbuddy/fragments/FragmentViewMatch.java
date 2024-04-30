@@ -183,7 +183,7 @@ public class FragmentViewMatch extends Fragment implements OnMapReadyCallback {
     private void matchData() {
         type.setText(m.getMatchType());
 
-        String dates = m.getMonth() + "/" + m.getDay();
+        String dates = m.getMonth() + "/" + m.getDay() + "/24";
         date.setText(dates);
 
         int hour = m.getHour();
@@ -192,8 +192,13 @@ public class FragmentViewMatch extends Fragment implements OnMapReadyCallback {
             hour = hour - 12;
             afternoon = "PM";
         }
-        String times = hour + ":" + m.getMinute() + " " + afternoon;
-        time.setText(times);
+        if (m.getMinute() == 0) {
+            String times = hour + ":00 " + afternoon;
+            time.setText(times);
+        } else {
+            String times = hour + ":" + m.getMinute() + " " + afternoon;
+            time.setText(times);
+        }
 
         experienceLevel.setText(m.getExperienceLevel());
 
