@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.example.tennisbuddy.FragmentNewChat;
 import com.example.tennisbuddy.R;
 import com.example.tennisbuddy.adapters.ChatListAdapater;
 import com.example.tennisbuddy.daos.ChatDao;
@@ -61,6 +62,13 @@ public class FragmentChatList extends Fragment {
 
     private void prepComponents(View view) {
         newChat = view.findViewById(R.id.buttonNewChat);
+        newChat.setOnClickListener(l -> {
+            FragmentNewChat fragment = new FragmentNewChat();
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentContainerMain, fragment)
+                    .addToBackStack(null)
+                    .commit();
+        });
 
         List<Chat> personalChats = getChats();
         List<User> users = getUsers(personalChats);
