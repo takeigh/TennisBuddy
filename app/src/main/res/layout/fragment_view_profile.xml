@@ -101,4 +101,12 @@
         android:text="Add Friend"
         android:visibility="gone"/>
 
+    <Button
+        android:id="@+id/buttonRemoveFriend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Remove Friend"
+        android:visibility="gone"/>
+
 </LinearLayout>

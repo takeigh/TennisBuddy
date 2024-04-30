@@ -33,6 +33,7 @@ public class FragmentViewProfile extends Fragment {
     Button logOut;
     Button editProfile;
     Button addFriend;
+    Button removeFriend;
     Button back;
     TextView name;
     TextView skillLevel;
@@ -111,6 +112,10 @@ public class FragmentViewProfile extends Fragment {
         addFriend = view.findViewById(R.id.buttonAddFriend);
         addFriend.setOnClickListener(l -> addFriend());
 
+        removeFriend = view.findViewById(R.id.buttonRemoveFriend);
+        removeFriend.setOnClickListener(l -> removeFriend());
+        removeFriend.setVisibility(View.GONE);
+
         emailLayout = view.findViewById(R.id.layoutEmail);
 
         if (loggedUser.getUserId() == viewedUser.getUserId()) {
@@ -124,6 +129,7 @@ public class FragmentViewProfile extends Fragment {
             for (Friends f : friendsList) {
                 if (f.getUser1Id() == viewedUser.getUserId() || f.getUser2Id() == viewedUser.getUserId()) {
                     addFriend.setVisibility(View.GONE);
+                    removeFriend.setVisibility(View.VISIBLE);
                 }
             }
         }
@@ -159,5 +165,14 @@ public class FragmentViewProfile extends Fragment {
 
         FriendsDatabase.getDatabase(requireContext()).friendsDao().addFriends(friends);
         addFriend.setVisibility(View.GONE);
+    }
+
+    private void removeFriend() {
+        List<Friends> friends = FriendsDatabase.getDatabase(requireContext()).friendsDao().getFriendsById(loggedUser.getUserId());
+        for (Friends f : friends) {
+            if (f.getUser1Id() == viewedUser.getUserId() || f.getUser2Id() == viewedUser.getUserId()) {
+                FriendsDatabase.getDatabase(requireContext()).friendsDao().deleteFriends(f);
+            }
+        }
     }
 }
