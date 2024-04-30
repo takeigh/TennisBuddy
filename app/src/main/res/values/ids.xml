@@ -10,4 +10,5 @@
     <item name="buttonSaveChanges" type="id" />
     <item name="editTextPhoneNumber" type="id" />
     <item name="editTextEmail" type="id" />
+    <item name="layoutEmail" type="id" />
 </resources>

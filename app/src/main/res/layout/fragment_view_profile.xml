@@ -7,13 +7,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/buttonEditProfile"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Edit Profile"
-        android:layout_gravity="center_vertical|end"
-        android:layout_margin="15dp"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonBackViewProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:layout_margin="15dp"
+            android:layout_alignParentStart="true"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/buttonEditProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Profile"
+            android:layout_margin="15dp"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/nameTextView"
@@ -26,6 +42,7 @@
         android:layout_margin="15dp"/>
 
     <LinearLayout
+        android:id="@+id/layoutEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp">

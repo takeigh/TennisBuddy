@@ -71,7 +71,7 @@ public class FragmentMenuBar extends Fragment {
         profile = view.findViewById(R.id.btnProfile);
         profile.setOnClickListener(l -> {
             FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragmentContainerMain, FragmentViewProfile.newInstance(user.getUserId()));
+            transaction.replace(R.id.fragmentContainerMain, FragmentViewProfile.newInstance(user.getUserId(), true));
             transaction.commit();
         });
     }
