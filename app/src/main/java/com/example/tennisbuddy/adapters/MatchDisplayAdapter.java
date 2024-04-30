@@ -88,6 +88,9 @@ public class MatchDisplayAdapter extends RecyclerView.Adapter<MatchDisplayAdapte
         TextView distance;
         TextView experienceLevel;
         TextView name;
+        TextView type;
+        TextView date;
+        TextView time;
         ViewGroup parent;
 
         public MyViewHolder(@NonNull View itemView, ViewGroup parent) {
@@ -99,6 +102,9 @@ public class MatchDisplayAdapter extends RecyclerView.Adapter<MatchDisplayAdapte
             distance = itemView.findViewById(R.id.textViewDisplayDistance);
             experienceLevel = itemView.findViewById(R.id.textViewDisplayExperience);
             name = itemView.findViewById(R.id.textViewDisplayHost);
+            type = itemView.findViewById(R.id.textViewDisplayType);
+            date = itemView.findViewById(R.id.textViewDisplayDate);
+            time = itemView.findViewById(R.id.textViewDisplayTime);
         }
 
         public void bind(Match m, OnClickMatchListener listener, Context context) {
@@ -113,6 +119,28 @@ public class MatchDisplayAdapter extends RecyclerView.Adapter<MatchDisplayAdapte
 
             String length = distanceCalculation() + " miles";
             distance.setText(length);
+
+            type.setText(m.getMatchType());
+
+            String fullDate = m.getMonth() + "/" + m.getDay() + "/24";
+            date.setText(fullDate);
+
+            int hour = m.getHour();
+            String amPm;
+            if (hour > 12) {
+                hour = hour - 12;
+                amPm = "PM";
+            } else {
+                amPm = "AM";
+            }
+            int minute = m.getMinute();
+            if (minute == 0) {
+                String fullTime = hour + ":00 " + amPm;
+                time.setText(fullTime);
+            } else {
+                String fullTime = hour + ":" + minute + " " + amPm;
+                time.setText(fullTime);
+            }
         }
 
         public Double distanceCalculation() {
