@@ -160,6 +160,14 @@ public class FragmentViewMatch extends Fragment implements OnMapReadyCallback {
             User u = UserDatabase.getDatabase(requireContext()).userDao().getUserByID(m.getPlayer2Id());
             String name = u.getFirstName() + " " + u.getLastName();
             player2.setText(name);
+            player2.setOnClickListener(l -> {
+                FragmentViewProfile fragment = FragmentViewProfile.newInstance(u.getUserId(), false);
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerMain, fragment)
+                        .addToBackStack(null)
+                        .commit();
+
+            });
             playerCount++;
         }
 
@@ -168,6 +176,14 @@ public class FragmentViewMatch extends Fragment implements OnMapReadyCallback {
                 User u = UserDatabase.getDatabase(requireContext()).userDao().getUserByID(m.getPlayer3Id());
                 String name = u.getFirstName() + " " + u.getLastName();
                 player3.setText(name);
+                player3.setOnClickListener(l -> {
+                    FragmentViewProfile fragment = FragmentViewProfile.newInstance(u.getUserId(), false);
+                    getParentFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentContainerMain, fragment)
+                            .addToBackStack(null)
+                            .commit();
+
+                });
                 playerCount++;
             }
 
@@ -175,6 +191,14 @@ public class FragmentViewMatch extends Fragment implements OnMapReadyCallback {
                 User u = UserDatabase.getDatabase(requireContext()).userDao().getUserByID(m.getPlayer4Id());
                 String name = u.getFirstName() + " " + u.getLastName();
                 player4.setText(name);
+                player4.setOnClickListener(l -> {
+                    FragmentViewProfile fragment = FragmentViewProfile.newInstance(u.getUserId(), false);
+                    getParentFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentContainerMain, fragment)
+                            .addToBackStack(null)
+                            .commit();
+
+                });
                 playerCount++;
             }
         }
@@ -211,6 +235,15 @@ public class FragmentViewMatch extends Fragment implements OnMapReadyCallback {
         User host = UserDatabase.getDatabase(requireContext()).userDao().getUserByID(m.getHostId());
         String hosts = "Host: " + host.getFirstName() + " " + host.getLastName();
         hostName.setText(hosts);
+        hostName.setOnClickListener(l -> {
+            FragmentViewProfile fragment = FragmentViewProfile.newInstance(host.getUserId(), false);
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentContainerMain, fragment)
+                    .addToBackStack(null)
+                    .commit();
+
+        });
+
     }
 
     private void markMap(Court court) {

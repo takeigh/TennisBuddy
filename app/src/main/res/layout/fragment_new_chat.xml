@@ -15,7 +15,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/buttonBackChat"
+            android:id="@+id/buttonBackChatNew"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
@@ -23,11 +23,10 @@
             android:layout_margin="15dp"/>
 
         <TextView
-            android:id="@+id/textViewChatName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="8"
-            android:text="Receiver"
+            android:text="New Chat"
             android:textStyle="bold"
             android:textSize="12pt"
             android:layout_gravity="center"
@@ -35,30 +34,56 @@
             android:layout_margin="15dp"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/layoutChatReceiver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutChatTitle"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="To:"
+            android:textStyle="bold"
+            android:textSize="8pt"
+            android:layout_gravity="center"
+            android:gravity="start"
+            android:layout_margin="15dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerReceiverNewChat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewChatMessages"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_below="@+id/layoutChatTitle"
-        android:layout_above="@+id/layoutMessageBox"
+        android:layout_below="@+id/layoutChatReceiver"
+        android:layout_above="@+id/layoutMessageBoxNew"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:background="@color/grey"/>
 
     <LinearLayout
-        android:id="@id/layoutMessageBox"
+        android:id="@id/layoutMessageBoxNew"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true">
 
         <EditText
-            android:id="@+id/editTextMessageBox"
+            android:id="@+id/editTextMessageBoxNew"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="10"/>
 
         <Button
-            android:id="@+id/buttonSend"
+            android:id="@+id/buttonSendNew"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"

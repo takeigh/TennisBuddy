@@ -19,11 +19,13 @@ import android.widget.Toast;
 import com.example.tennisbuddy.R;
 import com.example.tennisbuddy.databases.ChatDatabase;
 import com.example.tennisbuddy.databases.CourtDatabase;
+import com.example.tennisbuddy.databases.FriendsDatabase;
 import com.example.tennisbuddy.databases.KeepUserDatabase;
 import com.example.tennisbuddy.databases.MatchDatabase;
 import com.example.tennisbuddy.databases.UserDatabase;
 import com.example.tennisbuddy.entities.Chat;
 import com.example.tennisbuddy.entities.Court;
+import com.example.tennisbuddy.entities.Friends;
 import com.example.tennisbuddy.entities.KeepUser;
 import com.example.tennisbuddy.entities.Match;
 import com.example.tennisbuddy.entities.User;
@@ -103,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
         List<User> users = UserDatabase.getDatabase(this).userDao().getUsers();
         Log.d("DEBUG", "Database Users:");
         for (User u : users) {
-            Log.d("DEBUG", u.getFirstName() + " " + u.getLastName());
+            Log.d("DEBUG", u.getFirstName() + " " + u.getLastName() + ", " + u.getUserId());
         }
 
         List<Court> courts = CourtDatabase.getDatabase(this).courtDao().getCourts();
@@ -122,6 +124,12 @@ public class LoginActivity extends AppCompatActivity {
         List<Chat> chats = ChatDatabase.getDatabase(this).chatDao().getChats();
         for (Chat c : chats) {
             Log.d("DEBUG", c.getSenderId() + ", " + c.getReceiverId() + ": " + c.getMessage());
+        }
+
+        Log.d("DEBUG", "Friends List:");
+        List<Friends> friends = FriendsDatabase.getDatabase(this).friendsDao().getFriends();
+        for (Friends f : friends) {
+            Log.d("DEBUG", f.getUser1Id() + " + " + f.getUser2Id());
         }
     }
 
@@ -158,15 +166,6 @@ public class LoginActivity extends AppCompatActivity {
             if (user.getPassword().equals(passwordInput)) {
                 email.setText("");
                 password.setText("");
-
-                // Get the userID
-                int userID = user.getUserId();
-
-                // Save the userID in SharedPreferences
-                SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
-                SharedPreferences.Editor myEdit = sharedPreferences.edit();
-                myEdit.putInt("userID", userID);
-                myEdit.apply();
 
                 KeepUser kUser = new KeepUser();
                 kUser.setUserId(user.getUserId());

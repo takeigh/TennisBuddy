@@ -128,7 +128,14 @@ public class MatchDisplayAdapter extends RecyclerView.Adapter<MatchDisplayAdapte
                 hour = hour - 12;
                 amPm = "PM";
             } else {
-                amPm = "AM";
+                if (hour == 12) {
+                    amPm = "PM";
+                } else {
+                    amPm = "AM";
+                    if (hour == 0) {
+                        hour = 12;
+                    }
+                }
             }
             int minute = m.getMinute();
             if (minute == 0) {

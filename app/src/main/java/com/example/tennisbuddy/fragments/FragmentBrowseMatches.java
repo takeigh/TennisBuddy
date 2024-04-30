@@ -35,6 +35,7 @@ import com.example.tennisbuddy.listeners.OnClickMatchListener;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -198,14 +199,30 @@ public class FragmentBrowseMatches extends Fragment implements OnClickMatchListe
     }
 
     private List<Match> filterMatches(List<Match> matchList){
+        List<Match> step0 = new ArrayList<>();
         List<Match> step1 = new ArrayList<>();
         List<Match> step2 = new ArrayList<>();
         List<Match> filteredMatchList = new ArrayList<>();
 
+        for (Match m : matchList) {
+            LocalDateTime date = LocalDateTime.now();
+            if (m.getMonth() > date.getMonthValue()) {
+                step0.add(m);
+            } else if (m.getMonth() == date.getMonthValue()) {
+                if (m.getDay() >= date.getDayOfMonth()) {
+                    step0.add(m);
+                } else if (m.getDay() == date.getDayOfMonth()) {
+                    if (m.getHour() >= date.getHour()) {
+                        step0.add(m);
+                    }
+                }
+            }
+        }
+
         String distanceSetting = distanceSpinner.getSelectedItem().toString();
         switch (distanceSetting) {
             case "<10 miles":
-                for (Match m : matchList) {
+                for (Match m : step0) {
                     double distance = distanceCalculation(m);
 
                     if (distance <= 10.0) {
@@ -214,7 +231,7 @@ public class FragmentBrowseMatches extends Fragment implements OnClickMatchListe
                 }
                 break;
             case "<25 miles":
-                for (Match m : matchList) {
+                for (Match m : step0) {
                     double distance = distanceCalculation(m);
 
                     if (distance <= 25.0) {
@@ -223,7 +240,7 @@ public class FragmentBrowseMatches extends Fragment implements OnClickMatchListe
                 }
                 break;
             case "<50 miles":
-                for (Match m : matchList) {
+                for (Match m : step0) {
                     double distance = distanceCalculation(m);
 
                     if (distance <= 50.0) {
@@ -232,7 +249,7 @@ public class FragmentBrowseMatches extends Fragment implements OnClickMatchListe
                 }
                 break;
             default:
-                step1 = matchList;
+                step1 = step0;
         }
 
         String experienceSetting = experienceSpinner.getSelectedItem().toString();

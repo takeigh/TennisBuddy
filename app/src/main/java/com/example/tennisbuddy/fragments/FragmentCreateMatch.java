@@ -187,10 +187,19 @@ public class FragmentCreateMatch extends Fragment implements OnMapReadyCallback{
             m.setDay(Integer.parseInt(spinnerDay.getSelectedItem().toString()));
 
             if (spinnerAMPM.getSelectedItem().toString().equals("AM")) {
-                m.setHour(Integer.parseInt(spinnerHour.getSelectedItem().toString()));
+                if (Integer.parseInt(spinnerHour.getSelectedItem().toString()) == 12) {
+                    m.setHour(0);
+                } else {
+                    m.setHour(Integer.parseInt(spinnerHour.getSelectedItem().toString()));
+                }
             } else {
-                int hour = Integer.parseInt(spinnerHour.getSelectedItem().toString()) + 12;
-                m.setHour(hour);
+                if (Integer.parseInt(spinnerHour.getSelectedItem().toString()) == 12) {
+                    int hour = Integer.parseInt(spinnerHour.getSelectedItem().toString());
+                    m.setHour(hour);
+                } else {
+                    int hour = Integer.parseInt(spinnerHour.getSelectedItem().toString()) + 12;
+                    m.setHour(hour);
+                }
             }
 
             m.setMinute(Integer.parseInt(spinnerMinute.getSelectedItem().toString()));

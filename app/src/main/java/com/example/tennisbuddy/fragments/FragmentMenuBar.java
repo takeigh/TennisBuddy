@@ -56,6 +56,7 @@ public class FragmentMenuBar extends Fragment {
         browse.setOnClickListener(l -> {
             FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragmentContainerMain, new FragmentBrowseMatches());
+            transaction.addToBackStack(null);
             transaction.commit();
         });
 
@@ -63,6 +64,7 @@ public class FragmentMenuBar extends Fragment {
         chat.setOnClickListener(l -> {
             FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragmentContainerMain, new FragmentChatList());
+            transaction.addToBackStack(null);
             transaction.commit();
         });
 
@@ -71,7 +73,8 @@ public class FragmentMenuBar extends Fragment {
         profile = view.findViewById(R.id.btnProfile);
         profile.setOnClickListener(l -> {
             FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragmentContainerMain, FragmentViewProfile.newInstance(user.getUserId()));
+            transaction.replace(R.id.fragmentContainerMain, FragmentViewProfile.newInstance(user.getUserId(), true));
+            transaction.addToBackStack(null);
             transaction.commit();
         });
     }
