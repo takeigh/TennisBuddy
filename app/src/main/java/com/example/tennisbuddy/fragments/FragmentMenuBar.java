@@ -18,6 +18,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.tennisbuddy.R;
 import com.example.tennisbuddy.activities.LandingActivity;
+import com.example.tennisbuddy.databases.KeepUserDatabase;
+import com.example.tennisbuddy.entities.KeepUser;
 
 public class FragmentMenuBar extends Fragment {
     ImageButton browse;
@@ -64,10 +66,12 @@ public class FragmentMenuBar extends Fragment {
             transaction.commit();
         });
 
+        KeepUser user = KeepUserDatabase.getDatabase(requireContext()).keepUserDao().getKeepUser();
+
         profile = view.findViewById(R.id.btnProfile);
         profile.setOnClickListener(l -> {
             FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragmentContainerMain, new FragmentViewProfile());
+            transaction.replace(R.id.fragmentContainerMain, FragmentViewProfile.newInstance(user.getUserId()));
             transaction.commit();
         });
     }

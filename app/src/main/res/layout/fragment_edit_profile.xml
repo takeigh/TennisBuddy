@@ -1,78 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:orientation="vertical"
+    android:layout_margin="15dp">
 
-    <!-- Name Input -->
-    <TextView
-        android:id="@+id/textViewName"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Name"
-        android:textSize="8pt"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonBackProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="Back"
+            android:layout_margin="15dp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:text="Edit Profile"
+            android:textStyle="bold"
+            android:textSize="12pt"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/nameContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/textViewName"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp">
+        android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/editFirstName"
+            android:id="@+id/editFirstNameProfile"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:hint="First Name"
-            android:inputType="textPersonName" />
+            android:layout_margin="15dp" />
 
         <EditText
-            android:id="@+id/editLastName"
+            android:id="@+id/editLastNameProfile"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:hint="Last Name"
-            android:inputType="textPersonName" />
+            android:layout_margin="15dp" />
     </LinearLayout>
 
-
-    <TextView
-        android:id="@+id/textViewSkillLevel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/nameContainer"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Skill Level"
-        android:textSize="8pt" />
-
-    <Spinner
-        android:id="@+id/spinnerSkillLevel"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textViewSkillLevel"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp" />
+        >
 
-    <!-- Save Button -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="Email: "
+            android:textSize="8pt"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/editTextEmailProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="15dp"
+            android:hint="Email"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="Skill Level"
+            android:textSize="8pt"
+            android:textStyle="bold"/>
+
+        <Spinner
+            android:id="@+id/spinnerSkillLevelProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="15dp"/>
+
+    </LinearLayout>
+
     <Button
-        android:id="@+id/buttonSave"
+        android:id="@+id/buttonSaveProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_margin="15dp"
         android:text="Save Changes" />
 
-</RelativeLayout>
+</LinearLayout>

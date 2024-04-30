@@ -1,11 +1,8 @@
 package com.example.tennisbuddy.fragments;
 
-import android.app.Activity;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -13,37 +10,35 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.tennisbuddy.R;
-import com.example.tennisbuddy.activities.LandingActivity;
-import com.example.tennisbuddy.activities.LoginActivity;
 import com.example.tennisbuddy.daos.UserDao;
 import com.example.tennisbuddy.databases.KeepUserDatabase;
 import com.example.tennisbuddy.databases.UserDatabase;
 import com.example.tennisbuddy.entities.KeepUser;
 import com.example.tennisbuddy.entities.User;
-import com.example.tennisbuddy.daos.UserDao;
-import com.example.tennisbuddy.databases.UserDatabase;
-import com.example.tennisbuddy.entities.User;
 
-import java.util.Objects;
+import static android.content.Context.MODE_PRIVATE;
 
 public class FragmentViewProfile extends Fragment {
 
+    User viewedUser;
+    User loggedUser;
     Button logOut;
     Button editProfile;
-    TextView NameTextView;
-    TextView skillLevelTextView;
-    TextView emailTextView;
+    Button addFriend;
+    TextView name;
+    TextView skillLevel;
+    TextView email;
 
     public FragmentViewProfile() {
         // Required empty public constructor
     }
 
-    public static FragmentViewProfile newInstance(String param1, String param2) {
+    public static FragmentViewProfile newInstance(int id) {
         FragmentViewProfile fragment = new FragmentViewProfile();
         Bundle args = new Bundle();
+        args.putInt("viewedUser", id);
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,9 +47,11 @@ public class FragmentViewProfile extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            viewedUser = UserDatabase.getDatabase(requireContext()).userDao().getUserByID(getArguments().getInt("viewedUser"));
         }
+        KeepUser kU = KeepUserDatabase.getDatabase(requireContext()).keepUserDao().getKeepUser();
+        loggedUser = UserDatabase.getDatabase(requireContext()).userDao().getUserByID(kU.getUserId());
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,18 +64,20 @@ public class FragmentViewProfile extends Fragment {
     }
 
     private void prepComponents(View view) {
-        KeepUser kUser = KeepUserDatabase.getDatabase(requireContext()).keepUserDao().getKeepUser();
-        User user = UserDatabase.getDatabase(requireContext()).userDao().getUserByID(kUser.getUserId());
+        name = view.findViewById(R.id.nameTextView);
+        String userName = viewedUser.getFirstName() + " " + viewedUser.getLastName();
+        name.setText(userName);
 
-        NameTextView = view.findViewById(R.id.nameTextView);
-        String name = user.getFirstName() + " " + user.getLastName();
-        NameTextView.setText(name);
+        skillLevel = view.findViewById(R.id.skillLevelTextView);
+        skillLevel.setText(viewedUser.getExperienceLevel());
 
-        skillLevelTextView = view.findViewById(R.id.skillLevelTextView);
-        skillLevelTextView.setText(user.getExperienceLevel());
-
-        emailTextView = view.findViewById(R.id.email);
-        emailTextView.setText(user.getEmail());
+        email = view.findViewById(R.id.email);
+        if (loggedUser.getUserId() == viewedUser.getUserId()) {
+            email.setVisibility(View.VISIBLE);
+            email.setText(viewedUser.getEmail());
+        } else {
+            email.setVisibility(View.GONE);
+        }
 
         logOut = view.findViewById(R.id.buttonLogOut);
         logOut.setOnClickListener(l -> {
@@ -87,10 +86,33 @@ public class FragmentViewProfile extends Fragment {
         });
 
         editProfile = view.findViewById(R.id.buttonEditProfile);
-    }
+        if (loggedUser.getUserId() == viewedUser.getUserId()) {
+            editProfile.setVisibility(View.VISIBLE);
+        } else {
+            editProfile.setVisibility(View.GONE);
+        }
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create a new instance of the EditProfile fragment
+                FragmentEditProfile editProfileFragment = new FragmentEditProfile();
 
-    private void addFriend() {
-        // add the friend to the current user's friend list.
-        Toast.makeText(getContext(), "Friend added!", Toast.LENGTH_SHORT).show();
+                // Replace the current fragment with the EditProfile fragment
+                if (getActivity() != null) {
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentContainerMain, editProfileFragment)
+                            .addToBackStack(null)
+                            .commit();
+                }
+            }
+        });
+
+        addFriend = view.findViewById(R.id.buttonAddFriend);
+        if (loggedUser.getUserId() == viewedUser.getUserId()) {
+            addFriend.setVisibility(View.GONE);
+        } else {
+            addFriend.setVisibility(View.VISIBLE);
+            // Need logic to add friend
+        }
     }
 }

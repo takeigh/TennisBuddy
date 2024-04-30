@@ -3,6 +3,7 @@ package com.example.tennisbuddy.daos;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.tennisbuddy.entities.User;
 
@@ -21,7 +22,8 @@ public interface UserDao {
 
     @Insert
     void addUser(User user);
-
+    @Update
+    void updateUser(User user);
     @Query("DELETE FROM user")
     void removeAll();
 }

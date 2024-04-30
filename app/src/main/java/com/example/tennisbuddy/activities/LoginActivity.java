@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -157,6 +158,15 @@ public class LoginActivity extends AppCompatActivity {
             if (user.getPassword().equals(passwordInput)) {
                 email.setText("");
                 password.setText("");
+
+                // Get the userID
+                int userID = user.getUserId();
+
+                // Save the userID in SharedPreferences
+                SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+                SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                myEdit.putInt("userID", userID);
+                myEdit.apply();
 
                 KeepUser kUser = new KeepUser();
                 kUser.setUserId(user.getUserId());
