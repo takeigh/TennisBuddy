@@ -33,6 +33,9 @@ public class Chat {
     @ColumnInfo(name = "minute")
     private int minute;
 
+    @ColumnInfo(name = "second")
+    private int second;
+
     @ColumnInfo(name = "message")
     private String message;
 
@@ -98,6 +101,14 @@ public class Chat {
 
     public void setMinute(int minute) {
         this.minute = minute;
+    }
+
+    public int getSecond() {
+        return second;
+    }
+
+    public void setSecond(int second) {
+        this.second = second;
     }
 
     public String getMessage() {

@@ -16,10 +16,12 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.tennisbuddy.R;
+import com.example.tennisbuddy.databases.ChatDatabase;
 import com.example.tennisbuddy.databases.CourtDatabase;
 import com.example.tennisbuddy.databases.KeepUserDatabase;
 import com.example.tennisbuddy.databases.MatchDatabase;
 import com.example.tennisbuddy.databases.UserDatabase;
+import com.example.tennisbuddy.entities.Chat;
 import com.example.tennisbuddy.entities.Court;
 import com.example.tennisbuddy.entities.KeepUser;
 import com.example.tennisbuddy.entities.Match;
@@ -113,6 +115,12 @@ public class LoginActivity extends AppCompatActivity {
         List<Match> matches = MatchDatabase.getDatabase(this).matchDao().getMatches();
         for (Match m : matches) {
             Log.d("DEBUG", m.getMatchId() + ", " + m.getHostId());
+        }
+
+        Log.d("DEBUG", "Chat List:");
+        List<Chat> chats = ChatDatabase.getDatabase(this).chatDao().getChats();
+        for (Chat c : chats) {
+            Log.d("DEBUG", c.getSenderId() + ", " + c.getReceiverId() + ": " + c.getMessage());
         }
     }
 

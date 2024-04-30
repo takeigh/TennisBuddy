@@ -195,7 +195,6 @@ public class FragmentBrowseMatches extends Fragment implements OnClickMatchListe
 
         adapter = new MatchDisplayAdapter(sortedMatchList, this, context, requireActivity().getSupportFragmentManager());
         matchView.setAdapter(adapter);
-
     }
 
     private List<Match> filterMatches(List<Match> matchList){
@@ -445,7 +444,7 @@ public class FragmentBrowseMatches extends Fragment implements OnClickMatchListe
         double startLat = start.get(0);
         double startLon = start.get(1);
 
-        int Radius = 6371;// radius of earth in Km
+        int Radius = 3959;// radius of earth in Km
         double dLat = Math.toRadians(destLat - startLat);
         double dLon = Math.toRadians(destLon - startLon);
         double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
@@ -454,12 +453,6 @@ public class FragmentBrowseMatches extends Fragment implements OnClickMatchListe
                 * Math.sin(dLon / 2);
         double c = 2 * Math.asin(Math.sqrt(a));
         double valueResult = Radius * c;
-        DecimalFormat newFormat = new DecimalFormat("####");
-        int kmInDec = Integer.parseInt(newFormat.format(valueResult));
-        double meter = valueResult % 1000;
-        int meterInDec = Integer.parseInt(newFormat.format(meter));
-        Log.i("Radius Value", "" + valueResult + "   KM  " + kmInDec
-                + " Meter   " + meterInDec);
 
         DecimalFormat natural = new DecimalFormat("0.00");
 

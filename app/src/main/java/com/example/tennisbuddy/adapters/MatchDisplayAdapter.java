@@ -57,7 +57,7 @@ public class MatchDisplayAdapter extends RecyclerView.Adapter<MatchDisplayAdapte
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.match_display, parent, false);
-        return new MyViewHolder(view, parent);
+        return new MyViewHolder(view);
     }
 
     @Override
@@ -91,12 +91,9 @@ public class MatchDisplayAdapter extends RecyclerView.Adapter<MatchDisplayAdapte
         TextView type;
         TextView date;
         TextView time;
-        ViewGroup parent;
 
-        public MyViewHolder(@NonNull View itemView, ViewGroup parent) {
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            this.parent = parent;
 
             court = itemView.findViewById(R.id.textViewDisplayCourt);
             distance = itemView.findViewById(R.id.textViewDisplayDistance);
@@ -153,7 +150,7 @@ public class MatchDisplayAdapter extends RecyclerView.Adapter<MatchDisplayAdapte
             double startLat = start.get(0);
             double startLon = start.get(1);
 
-            int Radius = 6371;// radius of earth in Km
+            int Radius = 3959;// radius of earth in Km
             double dLat = Math.toRadians(destLat - startLat);
             double dLon = Math.toRadians(destLon - startLon);
             double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
@@ -162,12 +159,6 @@ public class MatchDisplayAdapter extends RecyclerView.Adapter<MatchDisplayAdapte
                     * Math.sin(dLon / 2);
             double c = 2 * Math.asin(Math.sqrt(a));
             double valueResult = Radius * c;
-            DecimalFormat newFormat = new DecimalFormat("####");
-            int kmInDec = Integer.parseInt(newFormat.format(valueResult));
-            double meter = valueResult % 1000;
-            int meterInDec = Integer.parseInt(newFormat.format(meter));
-            Log.i("Radius Value", "" + valueResult + "   KM  " + kmInDec
-                    + " Meter   " + meterInDec);
 
             DecimalFormat natural = new DecimalFormat("0.00");
 
@@ -177,7 +168,7 @@ public class MatchDisplayAdapter extends RecyclerView.Adapter<MatchDisplayAdapte
 
         public List<Double> convertStringToCoordinates(String location) {
             if (location != null) {
-                Geocoder geocoder = new Geocoder(parent.getContext(), Locale.getDefault());
+                Geocoder geocoder = new Geocoder(itemView.getContext(), Locale.getDefault());
 
                 try {
                     List<Address> locationAddress = geocoder.getFromLocationName(location, 1);
